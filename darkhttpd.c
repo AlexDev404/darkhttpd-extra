@@ -814,6 +814,15 @@ static const char *url_content_type(const char *url) {
                 return result->mimetype;
             }
         }
+        /* Try wildcard "*" entry for all extensionless files. */
+        {
+            struct mime_mapping *result =
+                bsearch("*", mime_map, mime_map_size,
+                        sizeof(struct mime_mapping), mime_mapping_cmp_str);
+            if (result != NULL) {
+                return result->mimetype;
+            }
+        }
     }
 
     return default_mimetype;

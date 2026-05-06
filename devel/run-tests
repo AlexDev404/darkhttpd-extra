@@ -127,6 +127,7 @@ runtests() {
   echo "test/type2  ap2" >> $DIR/mimemap
   echo "test/extensionless Makefile" >> $DIR/mimemap
   echo "test/dockerfile Dockerfile" >> $DIR/mimemap
+  echo "test/wildcard *" >> $DIR/mimemap
   ./a.out $DIR --port $PORT --addr $ADDR \
     --mimetypes $DIR/mimemap \
     --default-mimetype test/default \
