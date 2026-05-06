@@ -125,6 +125,8 @@ runtests() {
   echo "# this is a comment" >> $DIR/mimemap
   printf "test/type3\\tapp3\r\n" >> $DIR/mimemap
   echo "test/type2  ap2" >> $DIR/mimemap
+  echo "test/extensionless Makefile" >> $DIR/mimemap
+  echo "test/dockerfile Dockerfile" >> $DIR/mimemap
   ./a.out $DIR --port $PORT --addr $ADDR \
     --mimetypes $DIR/mimemap \
     --default-mimetype test/default \

@@ -799,7 +799,23 @@ static const char *url_content_type(const char *url) {
             return result->mimetype;
         }
     }
-    /* else no period found in the string */
+    else {
+        /* No period found in the string - try matching the basename
+         * (filename without path) against the mime_map for extensionless
+         * files.
+         */
+        const char *basename = strrchr(url, '/');
+        basename = (basename != NULL) ? basename + 1 : url;
+        if (strlen(basename) > 0) {
+            struct mime_mapping *result =
+                bsearch(basename, mime_map, mime_map_size,
+                        sizeof(struct mime_mapping), mime_mapping_cmp_str);
+            if (result != NULL) {
+                return result->mimetype;
+            }
+        }
+    }
+
     return default_mimetype;
 }
 
