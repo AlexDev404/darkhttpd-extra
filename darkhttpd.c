@@ -800,15 +800,14 @@ static const char *url_content_type(const char *url) {
         }
     }
     else {
-        /* No period found in the string - try matching the basename
-         * (filename without path) against the mime_map for extensionless
-         * files.
+        /* No period found in the string - try matching the filename
+         * (without path) against the mime_map for extensionless files.
          */
-        const char *basename = strrchr(url, '/');
-        basename = (basename != NULL) ? basename + 1 : url;
-        if (strlen(basename) > 0) {
+        const char *filename = strrchr(url, '/');
+        filename = (filename != NULL) ? filename + 1 : url;
+        if (strlen(filename) > 0) {
             struct mime_mapping *result =
-                bsearch(basename, mime_map, mime_map_size,
+                bsearch(filename, mime_map, mime_map_size,
                         sizeof(struct mime_mapping), mime_mapping_cmp_str);
             if (result != NULL) {
                 return result->mimetype;
