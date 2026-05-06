@@ -11,7 +11,7 @@ class TestMimemap(TestHelper):
         self.files = [ ("test-file.a1",    "test/type1"),
                        ("test-file.ap2",   "test/type2"),
                        ("test-file.app3",  "test/type3"),
-                       ("test-file.appp4", "test/default"),
+                       ("test-file.appp4", "test/wildcard"),
                        ("Makefile",        "test/extensionless"),
                        ("Dockerfile",      "test/dockerfile"),
                        ("LICENSE",         "test/wildcard") ]
@@ -37,7 +37,7 @@ class TestMimemap(TestHelper):
     def test_get_1(self): self.get_helper(0)
     def test_get_2(self): self.get_helper(1)
     def test_get_3(self): self.get_helper(2)
-    def test_get_4(self): self.get_helper(3)
+    def test_get_4_wildcard_extension(self): self.get_helper(3)
     def test_get_extensionless_makefile(self): self.get_helper(4)
     def test_get_extensionless_dockerfile(self): self.get_helper(5)
     def test_get_extensionless_wildcard(self): self.get_helper(6)

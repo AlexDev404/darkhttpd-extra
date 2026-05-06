@@ -798,6 +798,11 @@ static const char *url_content_type(const char *url) {
             assert(strcmp(url + period + 1, result->extension) == 0);
             return result->mimetype;
         }
+        /* No specific extension match - try wildcard "*" entry. */
+        result = bsearch("*", mime_map, mime_map_size,
+                         sizeof(struct mime_mapping), mime_mapping_cmp_str);
+        if (result != NULL)
+            return result->mimetype;
     }
     else {
         /* No period found in the string - try matching the filename
@@ -990,7 +995,8 @@ static void usage(const char *argv0) {
     printf("\t--no-listing\n"
     "\t\tDo not serve listing if directory is requested.\n\n");
     printf("\t--mimetypes filename (optional)\n"
-    "\t\tParses specified file for extension-MIME associations.\n\n");
+    "\t\tParses specified file for extension-MIME associations.\n"
+    "\t\tUse \"*\" as the extension to match all unmatched files.\n\n");
     printf("\t--default-mimetype string (optional, default: %s)\n"
     "\t\tFiles with unknown extensions are served as this mimetype.\n\n",
         octet_stream);
