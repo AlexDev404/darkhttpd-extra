@@ -1,0 +1,4 @@
+127.0.0.1 - - [06/May/2026:08:38:48 +0000] "GET /empty_hdrs_eijtQ59noe HTTP/1.1" 404 413 "" "test.py"
+127.0.0.1 - - [06/May/2026:08:38:48 +0000] "GET /sanit_quote HTTP/1.1" 404 413 "Ref-gtBYbZBxEf %22hacker%22" "test.py"
+127.0.0.1 - - [06/May/2026:08:38:48 +0000] "GET /sanit_newline HTTP/1.1" 404 413 "Start-0Sh5Gv1hrJ" "test.py"
+127.0.0.1 - - [06/May/2026:08:38:48 +0000] "GET /xff_test_nhyfoRNN3U HTTP/1.1" 404 413 "" "test.py"
